@@ -1,0 +1,26 @@
+name: CI/CD Pipelins
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu:latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+       
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          passowrd: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build And Push Docker Image
+        run: |
+          docker build ${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest .
+          docker push $${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest

@@ -22,5 +22,5 @@ jobs:
 
       - name: Build And Push Docker Image
         run: |
-          docker build ${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest .
           docker push $${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest

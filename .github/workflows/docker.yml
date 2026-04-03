@@ -24,3 +24,17 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/gpt-image:latest
+
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node-JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - run: npm install
+      - run: npm test
+      - run: npm run lint
+      - run: npm run build

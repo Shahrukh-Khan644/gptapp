@@ -38,7 +38,7 @@ jobs:
           node-version: "18"
 
       - run: npm install
-      - run: npm install esline --save-dev
+      - run: npm install eslint --save-dev
       - run: npm test
       - run: npm run lint
       - run: npm run build
